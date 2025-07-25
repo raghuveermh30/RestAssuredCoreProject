@@ -17,7 +17,6 @@ public class ContactsAPIsTest {
 
     //https://thinking-tester-contact-list.herokuapp.com/contactList
 
-
     @Test
     public void getContactsApiTest() {
 
@@ -35,6 +34,7 @@ public class ContactsAPIsTest {
                 .contentType(ContentType.JSON)
                 .and()
                 .body("$.size()", equalTo(1));
+
     }
 
     @Test
@@ -80,7 +80,6 @@ public class ContactsAPIsTest {
 
         String status = jsonPath.getString("status");
         Assert.assertEquals(status, "active");
-
     }
 
     @Test

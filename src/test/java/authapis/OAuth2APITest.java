@@ -22,7 +22,7 @@ public class OAuth2APITest {
                 .formParam("client_id", "5P4kiVdauWusiZALd8QlMh2BpAh1o1uW")
                 .formParam("client_secret", "VYCvgT2PIUBYT94D")
                 .when()
-                .post();
+                .post().then().log().all().extract().response();
 
         Assert.assertEquals(response.getStatusCode(), 200);
         response.prettyPrint();

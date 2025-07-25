@@ -22,7 +22,7 @@ public class SpotfyAPITest {
                 .formParam("client_id", "3995c6e40d4d4b8b8331e3c2051606f4")
                 .formParam("client_secret", "1e3a7f7c25714aa0b702d20c3dcb81a3")
                 .when()
-                .post("/api/token");
+                .post("/api/token").then().log().all().extract().response();
         Assert.assertEquals(response.getStatusCode(), 200);
         response.prettyPrint();
         accessToken = response.jsonPath().getString("access_token");

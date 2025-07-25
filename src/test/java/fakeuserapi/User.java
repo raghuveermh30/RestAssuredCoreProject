@@ -1,7 +1,5 @@
 package fakeuserapi;
 
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -48,8 +46,6 @@ public class User {
             private String longitude;
         }
     }
-
-
 }
 
 

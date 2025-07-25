@@ -29,6 +29,5 @@ public class ProductAPIs {
                 .then().log().all().assertThat().statusCode(200)
                 .and().
                 body("$.size()", equalTo(20));
-
     }
 }

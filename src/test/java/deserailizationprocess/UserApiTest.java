@@ -35,7 +35,7 @@ public class UserApiTest {
 
         Response response = given().log().all()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .body(user) //serialization : Pojo to Json (or) Lombok to Json and it will happen automatically
                 .when().log().all()
                 .post("/public/v2/users")
@@ -47,17 +47,19 @@ public class UserApiTest {
         System.out.println("*******************");
 
         //2. Get the User using User Id : Get
-//
+
         Response getResponse = given().log().all()
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .when().log().all()
                 .get("/public/v2/users/" + userId)
                 .then().log().all().extract().response();
+        getResponse.prettyPrint();
 
         //De-Serialization: JSON to POJO
         ObjectMapper mapper = new ObjectMapper();
         try {
             User userResponse = mapper.readValue(getResponse.getBody().asString(), User.class);
+
             System.out.println(userResponse.getId() + " " + userResponse.getName() + " " + userResponse.getEmail() + " " + userResponse.getGender() + " " + userResponse.getStatus());
 
             Assert.assertEquals(userResponse.getId().intValue(), userId);
@@ -65,7 +67,8 @@ public class UserApiTest {
             Assert.assertEquals(userResponse.getStatus(), user.getStatus());
             Assert.assertEquals(userResponse.getEmail(), user.getEmail());
             Assert.assertEquals(userResponse.getGender(), user.getGender());
-        } catch (JsonProcessingException e) {
+        }
+        catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }

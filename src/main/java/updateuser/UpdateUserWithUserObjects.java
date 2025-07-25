@@ -32,7 +32,7 @@ public class UpdateUserWithUserObjects {
                 .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
                 .body(user)
                 .when().log().all()
-                .post("/public/v2/users");
+                .post("/public/v2/users").then().log().all().extract().response();
 
         postResponse.prettyPrint();
         Integer userId = postResponse.jsonPath().get("id");

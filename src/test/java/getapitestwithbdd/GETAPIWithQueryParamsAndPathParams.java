@@ -30,7 +30,6 @@ public class GETAPIWithQueryParamsAndPathParams {
                 .then().log().all()
                 .assertThat().statusCode(200)
                 .and().contentType(ContentType.JSON);
-
     }
 
     @Test

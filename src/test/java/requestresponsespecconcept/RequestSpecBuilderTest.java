@@ -23,7 +23,6 @@ public class RequestSpecBuilderTest {
 
         //2.
         requestSpec
-                .when()
                 .body("{\n"
                         + "    \"title\": \"foo\",\n"
                         + "    \"body\": \"bar\",\n"
@@ -41,7 +40,6 @@ public class RequestSpecBuilderTest {
         RequestSpecification requestSpecification = given().baseUri("https://gorest.co.in")
                 .header("Content-type", "application/json")
                 .header("Authorization", "Bearer e4b8e1f593dc4a731a153c5ec8cc9b8bbb583ae964ce650a741113091b4e2ac6");
-        ;
 
         requestSpecification.when().log().all().get("/public/v2/users")
                 .then().log().all().assertThat().statusCode(200);
@@ -61,7 +59,6 @@ public class RequestSpecBuilderTest {
 
         requestSpecification.when().log().all()
                 .get("/public/v2/users").then().log().all().assertThat().statusCode(200);
-
 
     }
 }

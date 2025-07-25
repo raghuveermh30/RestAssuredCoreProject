@@ -5,7 +5,7 @@ public class Credentials {
     //POJO -> Plain Old Java Object
     //It cannot extends anything, no inheritence, no implements
     //create only Private data fileds
-    //Encapsulation
+    //Encapsulation;
     //constructor
 
     private String username;

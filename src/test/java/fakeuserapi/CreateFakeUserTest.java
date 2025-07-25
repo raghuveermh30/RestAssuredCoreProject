@@ -33,8 +33,6 @@ public class CreateFakeUserTest {
                 .post("/users")
                 .then().log().all()
                 .assertThat().statusCode(200);
-
-
     }
 
     @Test

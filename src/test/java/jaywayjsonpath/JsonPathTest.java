@@ -6,7 +6,6 @@ import static io.restassured.RestAssured.given;
 import java.util.List;
 import java.util.Map;
 
-import com.jayway.jsonpath.DocumentContext;
 import org.testng.annotations.Test;
 
 import com.jayway.jsonpath.JsonPath;
@@ -28,7 +27,7 @@ public class JsonPathTest {
         System.out.println(responseString);
         System.out.println("***************");
 
-        DocumentContext context = JsonPath.parse(responseString);
+        ReadContext context = JsonPath.parse(responseString);
 
         List<Number> priceList = context.read("$[?(@.price > 50)].price");
         priceList.forEach(s -> System.out.println(s));

@@ -1,0 +1,68 @@
+Here are concise, interview-ready notes for each Rest Assured authentication type:
+
+## Authentication Types in REST Assured
+
+### 1. Basic Auth
+- **What**: Sends username/password encoded as `Base64` in the `Authorization` header.
+- **Format**: `Authorization: Basic base64(username:password)`.
+- **Use case**: Simple internal APIs, legacy systems.
+- **Risk**: Credentials are sent with every request; must use HTTPS.
+- **RestAssured syntax**: `.auth().basic("user", "pass")`.
+
+### 2. Preemptive Basic Auth
+- **What**: Sends the `Authorization` header immediately without waiting for a `401 Unauthorized` challenge.
+- **Difference from basic**: Default basic auth may wait for the server challenge; preemptive sends credentials proactively.
+- **Use case**: When you know the endpoint requires auth and want to avoid the extra round trip.
+- **RestAssured syntax**: `.auth().preemptive().basic("user", "pass")`.
+
+### 3. Digest Auth
+- **What**: A challenge-response mechanism using a nonce and hashed credentials.
+- **How it works**: Server sends `401` with a nonce; client sends a hashed response (MD5 hash of username, realm, password, nonce, URI, method).
+- **Security**: More secure than basic because the password is never transmitted in plain text.
+- **Use case**: Apache servers, older secure APIs.
+- **RestAssured syntax**: `.auth().digest("user", "pass")`.
+
+### 4. Form Auth
+- **What**: Authenticates by submitting a login form (username/password) as form fields.
+- **How it works**: POST to a login form URL, server sets a session cookie, and subsequent requests use that session.
+- **Use case**: Traditional web apps that use server-side sessions (e.g., JSP, PHP).
+- **RestAssured syntax**: `.auth().form("user", "pass")`.
+
+### 5. OAuth 1.0
+- **What**: Token-based authentication using consumer key, consumer secret, token, and token secret.
+- **Mechanism**: Requires signature generation (HMAC-SHA1 or RSA-SHA1) and timestamps/nonce.
+- **Complexity**: High; not commonly used in new APIs.
+- **Use case**: Older APIs like Twitter API v1.
+- **RestAssured syntax**: Requires `OAuthConfig` and signing via Scribe library.
+
+### 6. OAuth 2.0
+- **What**: Delegated authorization framework where a client obtains an access token from an authorization server.
+- **Grant types**:
+  - **Authorization Code**: Most secure, used by web/mobile apps.
+  - **Password Credentials**: Direct username/password exchange.
+  - **Client Credentials**: Machine-to-machine communication.
+  - **Implicit**: Less secure, deprecated.
+- **Use case**: Modern APIs (Google, GitHub, Salesforce).
+- **RestAssured syntax**: `.auth().oauth2("accessToken")`.
+
+### 7. JWT (JSON Web Token)
+- **What**: A compact, self-contained token containing claims (payload, header, signature).
+- **Structure**: `header.payload.signature`.
+- **How it works**: Client obtains JWT after login, then sends it in the `Authorization: Bearer <token>` header.
+- **Use case**: Stateless authentication in microservices and SPAs.
+- **Note**: JWT is technically a *token format*, while OAuth 2.0 is an *authorization framework*. OAuth 2.0 often uses JWT as access tokens.
+- **RestAssured syntax**: `.header("Authorization", "Bearer " + token)`.
+
+## Quick Interview Summary Table
+
+| Auth Type | Sends Credentials | Security | Common Use |
+|-----------|-------------------|----------|------------|
+| Basic | Base64 encoded | Low (use HTTPS) | Internal APIs |
+| Preemptive | Base64 immediately | Low | Avoiding 401 round trip |
+| Digest | Hashed challenge-response | Medium | Apache/legacy |
+| Form | Form fields + session cookie | Medium | Web apps |
+| OAuth 1 | Signed tokens | High | Old Twitter APIs |
+| OAuth 2 | Access token (Bearer) | High | Modern APIs |
+| JWT | Signed token | High | Microservices, stateless auth |
+
+If you want, I can also convert this into a `.md` file in your project for easy revision.
