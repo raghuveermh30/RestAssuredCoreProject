@@ -32,7 +32,7 @@ public class RequestResponseSpecificationTest {
 
     @Test
     public void checkGetTest() {
-        requestSpecification.given()
+        requestSpecification.given().log().all()
                 .when().log().all()
                 .get("/posts/1").then().log().all().spec(responseSpecification)
                 .body("userId", equalTo(1))
@@ -59,6 +59,5 @@ public class RequestResponseSpecificationTest {
                 .post("/posts").then().log().all().spec(responseSpecification)
                 .body("title", equalTo("foo"))
                 .body("body", equalTo("bar"));
-
     }
 }

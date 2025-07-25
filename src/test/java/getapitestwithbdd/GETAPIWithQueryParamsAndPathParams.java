@@ -22,7 +22,7 @@ public class GETAPIWithQueryParamsAndPathParams {
     public void getUserWith_QueryParams() {
 
         given().log().all()
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .queryParam("name", "trivedi")
                 .queryParam("status", "active")
                 .when().log().all()
@@ -49,7 +49,7 @@ public class GETAPIWithQueryParamsAndPathParams {
         // the above map is called Immutable Map
 
         given().log().all()
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .queryParams(queryMap)
                 .when().log().all()
                 .get("/public/v2/users")
@@ -74,7 +74,7 @@ public class GETAPIWithQueryParamsAndPathParams {
 
         given().log().all()
                 .pathParam("userid", userId)
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .when().log().all()
                 .get("/public/v2/users/{userid}/posts")
                 .then().log().all()
@@ -86,7 +86,7 @@ public class GETAPIWithQueryParamsAndPathParams {
 
     //equalTo: json object {}
     //hasItem: Json Array []
-    //jayway jsopath: $
+    //jayway jsonpath: $
 
     @DataProvider
     public Object[][] getUserData1() {
@@ -100,7 +100,7 @@ public class GETAPIWithQueryParamsAndPathParams {
     public void getUserWith_QueryParamsWithDataProv(String name, String value) {
 
         given().log().all()
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .queryParams(name, value)
                 .when().log().all()
                 .get("/public/v2/users")

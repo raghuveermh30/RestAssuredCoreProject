@@ -88,7 +88,7 @@ public class ContactsAPIsTest {
         RestAssured.baseURI = "https://gorest.co.in";
 
         Response response = given().log().all()
-                .header("Authorization", "Bearer 81dcd70d5b3e095c23fba7c8ded79f76f4d78320d52e2b444c7daade8728cc2c")
+                .header("Authorization", "Bearer cd9042fb6125093d54440e15ec486e769b118fa2506410ee7923fcc85fee6a95")
                 .when().log().all()
                 .get("/public/v2/users");
 
